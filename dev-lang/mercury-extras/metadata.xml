@@ -5,7 +5,4 @@
   <email>keri@gentoo.org</email>
   <name>Keri Harris</name>
 </maintainer>
-<use>
-  <flag name="tommath">Enable support for tommath library</flag>
-</use>
 </pkgmetadata>

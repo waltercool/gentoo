@@ -24,7 +24,6 @@ DEPEND="${RDEPEND}
 	test? ( dev-perl/Test-LeakTrace )"
 
 PATCHES=(
-	"${FILESDIR}/2.11-build_env_ldflags.patch"
 	"${FILESDIR}/2.11-build_split_htslib_opts.patch"
 )
 

@@ -12,8 +12,5 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-PATCHES=(
-	"${FILESDIR}"/${P}-no-common.patch
-	"${FILESDIR}"/${P}-musl.patch
-)
+PATCHES=( "${FILESDIR}"/${P}-no-common.patch )
 DOCS="AUTHORS ChangeLog TODO" # README* installed by build system

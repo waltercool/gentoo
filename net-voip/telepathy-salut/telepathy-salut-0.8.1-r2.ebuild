@@ -36,7 +36,10 @@ DEPEND="${RDEPEND}
 	test? (
 		>=dev-libs/check-0.9.4
 		net-libs/libgsasl
-		$(python_gen_any_dep 'dev-python/twisted[${PYTHON_USEDEP}]')
+		|| (
+			$(python_gen_any_dep 'dev-python/twisted[${PYTHON_USEDEP}]')
+			$(python_gen_any_dep 'dev-python/twisted-words[${PYTHON_USEDEP}]')
+		)
 	)
 "
 # FIXME: needs xmppstream python module
@@ -49,7 +52,8 @@ PATCHES=(
 
 python_check_deps() {
 	if use test ; then
-		 has_version "dev-python/twisted[${PYTHON_USEDEP}]"
+		 has_version "dev-python/twisted[${PYTHON_USEDEP}]" \
+			|| has_version "dev-python/twisted-words[${PYTHON_USEDEP}]"
 	fi
 }
 

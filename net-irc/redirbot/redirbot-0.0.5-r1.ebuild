@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -18,6 +18,11 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
-	>=dev-python/twisted-16.0.0[${PYTHON_USEDEP}]
+	|| (
+		>=dev-python/twisted-16.0.0[${PYTHON_USEDEP}]
+		( >=dev-python/twisted-core-11.1.0[${PYTHON_USEDEP}]
+		  dev-python/twisted-words[${PYTHON_USEDEP}]
+		)
+	)
 "
 RDEPEND="${DEPEND}"

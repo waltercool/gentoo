@@ -11,7 +11,7 @@ CHROMIUM_LANGS="am ar bg bn ca cs da de el en-GB es es-419 et fa fi fil fr gu he
 inherit check-reqs chromium-2 desktop flag-o-matic multilib ninja-utils pax-utils portability python-any-r1 readme.gentoo-r1 toolchain-funcs xdg-utils
 
 DESCRIPTION="Open-source version of Google Chrome web browser"
-HOMEPAGE="https://chromium.org/"
+HOMEPAGE="http://chromium.org/"
 SRC_URI="https://commondatastorage.googleapis.com/chromium-browser-official/${P}.tar.xz"
 
 LICENSE="BSD"

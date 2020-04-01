@@ -1,19 +1,20 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit toolchain-funcs
 
-if [[ ${PV} == *9999 ]] ; then
+if [[ $PV = 9999 ]]; then
 	inherit cvs
 	ECVS_SERVER="anoncvs.mirbsd.org:/cvs"
 	ECVS_MODULE="mksh"
 	ECVS_USER="_anoncvs"
 	ECVS_AUTH="ext"
+	KEYWORDS=""
 else
 	SRC_URI="https://www.mirbsd.org/MirOS/dist/mir/mksh/${PN}-R${PV}.tgz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~sh ~sparc ~x86 ~amd64-linux ~x86-linux"
 fi
 
 DESCRIPTION="MirBSD Korn Shell"

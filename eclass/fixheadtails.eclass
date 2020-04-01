@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: fixheadtails.eclass
@@ -7,6 +7,8 @@
 # @AUTHOR:
 # Original author John Mylchreest <johnm@gentoo.org>
 # @BLURB: functions to replace obsolete head/tail with POSIX compliant ones
+
+DEPEND=">=sys-apps/sed-4"
 
 _do_sed_fix() {
 	einfo " - fixed $1"

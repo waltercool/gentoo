@@ -23,7 +23,8 @@ RDEPEND=">=dev-libs/dbus-glib-0.74
 	net-dialup/ppp:=
 	gtk? (
 		x11-libs/gtk+:3
-		app-crypt/libsecret
+		gnome-base/gnome-keyring
+		gnome-base/libgnome-keyring
 	)
 "
 

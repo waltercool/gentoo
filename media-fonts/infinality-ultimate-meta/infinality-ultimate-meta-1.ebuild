@@ -28,6 +28,7 @@ RDEPEND="media-libs/fontconfig-ultimate
 			media-fonts/courier-prime
 			media-fonts/dejavu
 			media-fonts/signika
+			media-fonts/symbola
 			media-fonts/tex-gyre
 			!minimal? (
 				media-fonts/cantarell

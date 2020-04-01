@@ -5,11 +5,9 @@
     <email>sci@gentoo.org</email>
     <name>Gentoo Science Project</name>
   </maintainer>
-  <maintainer type="project">
-    <email>python@gentoo.org</email>
-    <name>Python</name>
-  </maintainer>
-  <stabilize-allarches/>
+  <longdescription>
+    Interactive HTML widgets for Jupyter notebooks and the IPython kernel.
+  </longdescription>
   <upstream>
     <remote-id type="pypi">ipywidgets</remote-id>
     <remote-id type="github">jupyter-widgets/ipywidgets</remote-id>

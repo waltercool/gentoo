@@ -53,10 +53,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-PATCHES=(
-	"${FILESDIR}/${PN}-19.12.2-darkbackground-detect.patch"
-	"${FILESDIR}/${P}-no-ccache.patch"
-)
+PATCHES=( "${FILESDIR}/${PN}-19.12.2-darkbackground-detect.patch" )
 
 src_configure() {
 	local mycmakeargs=(

@@ -21,6 +21,10 @@ KEYWORDS="amd64 x86"
 RDEPEND="${PYTHON_DEPS}
 	dev-libs/icu:="
 DEPEND="${RDEPEND}"
+BDEPEND="test? (
+		${RDEPEND}
+		dev-python/six
+	)"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.4.2-testLocaleMatcher_pytest_old_icu.patch

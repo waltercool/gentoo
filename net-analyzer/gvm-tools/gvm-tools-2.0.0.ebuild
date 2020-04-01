@@ -4,7 +4,6 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_6 )
-DISTUTILS_USE_SETUPTOOLS=rdepend
 inherit distutils-r1
 
 DESCRIPTION="Remote control for Greenbone Vulnerability Manager, previously named openvas-cli"

@@ -1,11 +1,11 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 FORTRAN_NEEDED=fortran
 
-inherit flag-o-matic fortran-2 multibuild multilib-minimal toolchain-funcs
+inherit flag-o-matic fortran-2 toolchain-funcs versionator multibuild multilib-minimal
 
 DESCRIPTION="Fast C library for the Discrete Fourier Transform"
 HOMEPAGE="http://www.fftw.org/"
@@ -17,7 +17,7 @@ if [[ ${PV} = *9999 ]]; then
 	EGIT_REPO_URI="https://github.com/FFTW/fftw3.git"
 else
 	SRC_URI="http://www.fftw.org/${PN}-${PV/_p/-pl}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
+	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 fi
 
 LICENSE="GPL-2+"
@@ -28,11 +28,14 @@ RESTRICT="!test? ( test )"
 RDEPEND="
 	mpi? ( >=virtual/mpi-2.0-r4[${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
-	quad? ( sys-devel/gcc[fortran] )
 	test? ( dev-lang/perl )"
+if [[ ${PV} = *9999 ]]; then
+	DEPEND="${DEPEND}
+		dev-ml/ocamlbuild
+		doc? ( media-gfx/transfig )"
+fi
 
 S=${WORKDIR}/${MY_P}
-HTML_DOCS=( doc/html/. )
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
@@ -61,10 +64,6 @@ src_prepare() {
 
 	# fix info file for category directory
 	if [[ ${PV} = *9999 ]]; then
-		sed -i -e
-			's/Texinfo documentation system/Libraries/' \
-			doc/fftw3."info" || die "failed to fix info file"
-
 		eautoreconf
 	fi
 }
@@ -82,6 +81,7 @@ multilib_src_configure() {
 
 	local myconf=(
 		--enable-shared
+		$([[ ${PV} = *9999 ]] && echo "--enable-maintainer-mode")
 		$(use_enable static-libs static)
 		$(use_enable "cpu_flags_x86_fma$(usex cpu_flags_x86_fma3 3 4)" fma)
 		$(use_enable fortran)
@@ -132,7 +132,14 @@ multilib_src_configure() {
 			;;
 	esac
 
-	ECONF_SOURCE="${S}" econf "${myconf[@]}" MPICC="$(tc-getCC)"
+	local MY_S="${S}"
+	#out-of-source build is broken for 9999 due to maintainer mode
+	if [[ ${PV} = *9999 ]]; then
+		cp -al "${S}"/* "${BUILD_DIR}"/
+		MY_S="${BUILD_DIR}"
+	fi
+
+	ECONF_SOURCE="${MY_S}" econf "${myconf[@]}" MPICC="$(tc-getCC) -lmpi"
 }
 
 src_configure() {
@@ -140,7 +147,7 @@ src_configure() {
 }
 
 src_compile() {
-	multibuild_foreach_variant multilib-minimal_src_compile
+	multibuild_foreach_variant multilib-minimal_src_compile all $([[ ${PV} = *9999 ]] && usev doc)
 }
 
 multilib_src_test() {
@@ -158,6 +165,7 @@ src_test() {
 }
 
 src_install() {
+	use doc && HTML_DOCS=( doc/html/. )
 	multibuild_foreach_variant multilib-minimal_src_install
 	dodoc CONVENTIONS
 
@@ -165,8 +173,6 @@ src_install() {
 		dodoc doc/*.pdf
 		docinto faq
 		dodoc -r doc/FAQ/fftw-faq.html/.
-	else
-		rm -r "${ED%/}"/usr/share/doc/${PF}/html || die
 	fi
 
 	local x

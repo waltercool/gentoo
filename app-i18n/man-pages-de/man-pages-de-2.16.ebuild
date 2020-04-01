@@ -13,7 +13,7 @@ SRC_URI="https://salsa.debian.org/manpages-l10n-team/manpages-l10n/-/archive/v${
 
 LICENSE="GPL-3+ man-pages GPL-2+ GPL-2 BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sh ~sparc ~x86"
 IUSE=""
 
 RDEPEND="virtual/man"
@@ -26,6 +26,7 @@ src_prepare() {
 	default
 
 	# some packages have their own translations
+	local manpage
 	local noinst_manpages=(
 		# sys-apps/shadow
 		po/de/man1/groups.1.po
@@ -47,7 +48,10 @@ src_prepare() {
 		po/de/man1/xzless.1.po
 		po/de/man1/xzmore.1.po
 	)
-	rm "${noinst_manpages[@]}" || die
+	for manpage in ${noinst_manpages[@]} ; do
+		echo "${manpage}"
+		rm "${manpage}" || die
+	done
 
 	eautoreconf
 }

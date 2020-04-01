@@ -3,7 +3,6 @@
 
 EAPI=7
 
-DISTUTILS_USE_SETUPTOOLS=no
 PYTHON_COMPAT=( python3_{6,7} )
 
 inherit distutils-r1
@@ -19,7 +18,7 @@ SRC_URI="https://github.com/pympler/pympler/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 SLOT="0"
 LICENSE="Apache-2.0"
-KEYWORDS="~alpha amd64 arm ia64 ppc ppc64 sparc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc test"
 RESTRICT="!test? ( test )"
 

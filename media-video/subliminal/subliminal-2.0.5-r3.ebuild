@@ -19,6 +19,7 @@ SRC_URI="
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+IUSE="test"
 
 RDEPEND="
 	>=dev-python/appdirs-1.3[${PYTHON_USEDEP}]
@@ -41,7 +42,11 @@ RDEPEND="
 DEPEND="
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	test? (
+		${RDEPEND}
 		app-arch/unzip
+		dev-python/pytest-cov[${PYTHON_USEDEP}]
+		dev-python/pytest-runner[${PYTHON_USEDEP}]
+		dev-python/pytest[${PYTHON_USEDEP}]
 		dev-python/sympy[${PYTHON_USEDEP}]
 		>=dev-python/vcrpy-1.6.1[${PYTHON_USEDEP}]
 	)
@@ -53,8 +58,6 @@ RESTRICT=test
 PATCHES=( "${FILESDIR}/${P}-add-missing-comma.patch" )
 
 S="${WORKDIR}/${PN}-${COMMIT_ID}"
-
-distutils_enable_tests pytest
 
 python_prepare_all() {
 	# Disable code checkers as they require unavailable dependencies.
@@ -70,4 +73,8 @@ python_prepare_all() {
 	fi
 
 	distutils-r1_python_prepare_all
+}
+
+python_test() {
+	esetup.py test
 }

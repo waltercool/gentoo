@@ -12,7 +12,6 @@
     classes that client code uses to construct the grammar directly in
     Python code.
   </longdescription>
-  <stabilize-allarches/>
   <upstream>
     <remote-id type="sourceforge">pyparsing</remote-id>
     <remote-id type="pypi">pyparsing</remote-id>

@@ -8,5 +8,7 @@
 		<email>prometheanfire@gentoo.org</email>
 		<name>Matthew Thode</name>
 	</maintainer>
-	<stabilize-allarches/>
+	<longdescription lang="en">
+		A cross-platform clipboard module for Python.
+	</longdescription>
 </pkgmetadata>

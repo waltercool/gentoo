@@ -3,7 +3,7 @@
 
 EAPI=7
 
-EGO_PN="github.com/DNSCrypt/${PN}"
+EGO_PN="github.com/jedisct1/${PN}"
 
 inherit fcaps go-module systemd
 
@@ -30,8 +30,7 @@ RDEPEND="
 "
 
 FILECAPS=( cap_net_bind_service+ep usr/bin/dnscrypt-proxy )
-
-PATCHES=( "${FILESDIR}"/config-full-paths-r11.patch )
+PATCHES=( "${FILESDIR}"/config-full-paths-r10.patch )
 
 src_compile() {
 	pushd "${PN}" >/dev/null || die
@@ -96,5 +95,5 @@ pkg_postinst() {
 	elog
 	elog "nameserver 127.0.0.1"
 	elog
-	elog "Also see https://github.com/DNSCrypt/${PN}/wiki"
+	elog "Also see https://github.com/jedisct1/${PN}/wiki"
 }

@@ -119,8 +119,8 @@ src_install() {
 	keepdir /var/log/netdata
 	fowners -Rc netdata:netdata /var/log/netdata
 	keepdir /var/lib/netdata
-	keepdir /var/lib/netdata/registry
 	fowners -Rc netdata:netdata /var/lib/netdata
+	keepdir /var/lib/netdata/registry
 
 	fowners -Rc root:netdata /usr/share/${PN}
 

@@ -4,7 +4,7 @@
 EAPI=6
 
 RUBY_OPTIONAL=no
-USE_RUBY="ruby25"
+USE_RUBY="ruby24"
 # note: define maximally ONE implementation here
 
 PYTHON_COMPAT=( python3_6 )

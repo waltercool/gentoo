@@ -29,7 +29,7 @@ RDEPEND="
 	)
 	gnome? (
 		x11-libs/gtk+:3
-		app-crypt/libsecret
+		gnome-base/libgnome-keyring
 		gnome-extra/nm-applet
 	)"
 

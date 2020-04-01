@@ -350,10 +350,8 @@ texlive-module_src_install() {
 	done
 
 	dodir /usr/share
-	if use doc; then
-		if [[ -d texmf-doc ]]; then
-			cp -pR texmf-doc "${ED}/usr/share/" || die
-		fi
+	if use doc && [[ -d texmf-doc ]]; then
+		cp -pR texmf-doc "${ED}/usr/share/" || die
 	else
 		if [[ -d texmf-dist/doc ]]; then
 			rm -rf texmf-dist/doc || die
